@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <symbol id="fish" viewBox="0 0 64 64">
+    <path d="M14 32 3 19v26z" fill="#286c73"/>
+    <path d="M12 32c8-22 35-22 48 0-13 22-40 22-48 0" fill="#74bcc0" stroke="#174952" stroke-width="3"/>
+    <path d="m27 17 8-8 7 10m-14 27 8 8 6-10" fill="#d4a951" stroke="#174952" stroke-width="2"/>
+    <path d="M42 18q-8 14 0 28" fill="none" stroke="#174952" stroke-width="2"/>
+    <circle cx="49" cy="28" r="3" fill="#174952"/>
+  </symbol>
+  <symbol id="bread" viewBox="0 0 64 64">
+    <path d="M10 43C-2 22 17 8 33 13c18-8 36 12 23 31l-3 8H14z" fill="#e9b76a" stroke="#70451f" stroke-width="3"/>
+    <path d="m19 26 6 12m6-16 6 12m6-12 6 12" stroke="#fff1d2" stroke-width="5" stroke-linecap="round"/>
+    <path d="M14 43h39" stroke="#b37c3c" stroke-width="3"/>
+  </symbol>
+  <symbol id="salt" viewBox="0 0 64 64">
+    <path d="M22 18 15 50q16 10 34 0l-7-32z" fill="#d1e4df" stroke="#3d6560" stroke-width="3"/>
+    <path d="M22 18h20l-3-9H25z" fill="#d7a857" stroke="#3d6560" stroke-width="3"/>
+    <path d="M20 36q12-5 24 0l3 12q-15 7-30 0z" fill="#fffdf1"/>
+    <path d="m29 26 2 2m6 1 2 2m-11 9 2 2m7 0 2 2" stroke="#638782" stroke-width="2"/>
+  </symbol>
+  <symbol id="wool" viewBox="0 0 64 64">
+    <circle cx="30" cy="31" r="23" fill="#d99783" stroke="#754837" stroke-width="3"/>
+    <path d="M13 17q20 1 35 19M9 27q21 2 37 19M13 40q20-24 26-30M23 52q19-29 20-37M8 33q21-20 38-14M36 53q14-3 17 2t8 2" fill="none" stroke="#754837" stroke-width="2"/>
+  </symbol>
+  <symbol id="basket" viewBox="0 0 64 64">
+    <path d="M20 24q0-30 24 0" fill="none" stroke="#735024" stroke-width="5"/>
+    <path d="m10 25 6 28h32l6-28z" fill="#d3a758" stroke="#735024" stroke-width="3"/>
+    <path d="M12 33h40M14 42h36m-29-15 3 24m8-24v24m11-24-3 24" stroke="#735024" stroke-width="2"/>
+  </symbol>
+</svg>

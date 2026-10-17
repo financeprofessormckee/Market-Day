@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="A little harbor market. A fresh barter puzzle every day. Trade wisely and bring home the most fish.">
+  <meta name="theme-color" content="#174952">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://financeprofessormckee.github.io/Market-Day/">
+  <meta property="og:title" content="Market Day — a daily barter puzzle">
+  <meta property="og:description" content="Trade around a cozy harbor market. Can you bring home the best possible haul?">
+  <meta property="og:image" content="https://financeprofessormckee.github.io/Market-Day/assets/social-card.png">
+  <meta property="og:image:alt" content="Market Day: a daily barter puzzle in a cozy harbor market">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <title>Market Day — a daily barter puzzle</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+  <script src="js/model.js" defer></script>
+  <script src="js/boards.js" defer></script>
+  <script src="js/calendar.js" defer></script>
+  <script src="js/session.js" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#market">Skip to the market</a>
+  <header class="masthead">
+    <div class="brand">
+      <img src="assets/favicon.svg" width="46" height="46" alt="">
+      <div><h1>Market Day</h1><p>A little trading. A little thinking.</p></div>
+    </div>
+    <label class="theme-label">Appearance
+      <select id="theme"><option value="system">System</option><option value="light">Light</option><option value="dark">Dark</option></select>
+    </label>
+  </header>
+  <main class="wrap" id="market" tabindex="-1">
+    <img class="market-scene" src="assets/market.svg" width="960" height="210" alt="">
+    <nav class="navigation" aria-label="Markets">
+      <button type="button" id="today" aria-pressed="true">Today</button>
+      <button type="button" id="archive" aria-pressed="false" aria-expanded="false" aria-controls="archive-picker">Archive</button>
+      <button type="button" id="practice" aria-pressed="false">Practice</button>
+    </nav>
+    <div class="days" id="days" role="group" aria-label="Puzzle days"></div>
+    <section class="archive-picker panel" id="archive-picker" aria-labelledby="archive-heading" hidden>
+      <h2 id="archive-heading">Earlier markets</h2>
+      <label for="archive-month">Month</label>
+      <select id="archive-month"></select>
+      <div class="archive-dates" id="archive-dates"></div>
+      <p class="muted">All markets open at midnight in Chicago. Pick any past day.</p>
+    </section>
+    <button type="button" id="new-market" class="notice" hidden>A new market is open. Play today’s puzzle →</button>
+    <p id="storage-notice" class="notice" role="status" hidden></p>
+    <p id="loading" class="muted" role="status">Opening the market…</p>
+    <section id="unavailable" class="panel" hidden aria-labelledby="unavailable-heading">
+      <h2 id="unavailable-heading">This market is unavailable</h2>
+      <p id="unavailable-message"></p>
+      <div class="actions"><button type="button" id="retry" class="btn">Try again</button><button type="button" id="choose-practice" class="btn primary">Visit practice markets</button></div>
+    </section>
+    <section class="intro" id="intro" hidden aria-labelledby="puzzle-heading"></section>
+    <aside class="welcome panel" id="welcome" hidden aria-label="Getting started">
+      <strong>Welcome to the market.</strong>
+      <p>Each tap trades one whole lot. Every stall has limited stock. Only fish count when you close; Undo and Reset are free.</p>
+      <button type="button" class="text-button" id="dismiss-welcome">Got it</button>
+    </aside>
+    <section class="ledger" id="ledger" hidden aria-label="Your goods">
+      <div class="holdings" id="holdings"></div>
+      <p id="basket" class="basket-meter" hidden></p>
+    </section>
+    <section id="play-area" hidden aria-labelledby="stalls-h">
+      <div class="section-heading"><h2 id="stalls-h">Around the market</h2><span class="muted">One tap · one lot</span></div>
+      <div class="stalls" id="stalls"></div>
+      <div class="actions market-actions">
+        <button type="button" id="undo" class="btn">Undo</button>
+        <button type="button" id="reset" class="btn">Reset</button>
+        <button type="button" id="close" class="btn primary">Close the market</button>
+      </div>
+    </section>
+    <section class="result panel" id="result" hidden aria-labelledby="result-heading"></section>
+    <details class="log" id="log-wrap" hidden>
+      <summary>Trade log (<span id="log-count">0</span>)</summary>
+      <ol id="log"></ol>
+    </details>
+    <details class="rules" id="rules">
+      <summary>How to play</summary>
+      <ul>
+        <li>Start with fish. Trade around the market and finish with as many fish as you can.</li>
+        <li>Each stall offers a fixed trade. Tap it once to trade one <strong>whole lot</strong>.</li>
+        <li><strong>Every stall has limited stock.</strong> The dots and “trades left” count it down.</li>
+        <li>Some markets limit your basket. Bread, salt and wool take space; fish do not.</li>
+        <li>Mixed offers need <strong>every ingredient together</strong>. “3 bread + 2 salt” means both, not either.</li>
+        <li>Only fish count at closing. Leftover goods are worth nothing.</li>
+        <li>Undo and Reset are free. Closing reveals the best score; the walkthrough is optional.</li>
+        <li>Your first result is saved. Play again as often as you like; replays are labeled.</li>
+      </ul>
+    </details>
+    <noscript><p class="notice">Market Day needs JavaScript to trade and load daily puzzles.</p></noscript>
+    <footer><p>Inspired by David Friedman’s Arbitrage game proposal.<br>Made by Eric McKee.</p><p>A fresh market every day. A bigger challenge each weekend.</p></footer>
+    <p id="announce" class="sr-only" aria-live="polite" aria-atomic="true"></p>
+    <p id="toast" class="toast" hidden></p>
+  </main>
+</body>
+</html>

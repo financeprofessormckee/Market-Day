@@ -1,0 +1,526 @@
+{
+  "puzzles": [
+    {
+      "id": "2027-04-01",
+      "day": "Thursday",
+      "short": "Thu",
+      "difficulty": "Hard",
+      "home": "fish",
+      "start": {
+        "fish": 12
+      },
+      "note": "A longer conversion chain meets a shortcut. Compare where each route ends.",
+      "stalls": [
+        {
+          "id": "baker",
+          "name": "Baker",
+          "give": [
+            {
+              "good": "fish",
+              "qty": 1
+            }
+          ],
+          "get": {
+            "good": "bread",
+            "qty": 5
+          },
+          "times": 4
+        },
+        {
+          "id": "miller",
+          "name": "Miller",
+          "give": [
+            {
+              "good": "bread",
+              "qty": 5
+            }
+          ],
+          "get": {
+            "good": "salt",
+            "qty": 4
+          },
+          "times": 3
+        },
+        {
+          "id": "carter",
+          "name": "Carter",
+          "give": [
+            {
+              "good": "salt",
+              "qty": 2
+            }
+          ],
+          "get": {
+            "good": "wool",
+            "qty": 1
+          },
+          "times": 2
+        },
+        {
+          "id": "shepherd",
+          "name": "Shepherd",
+          "give": [
+            {
+              "good": "wool",
+              "qty": 1
+            }
+          ],
+          "get": {
+            "good": "fish",
+            "qty": 5
+          },
+          "times": 3
+        },
+        {
+          "id": "cook",
+          "name": "Cook",
+          "give": [
+            {
+              "good": "salt",
+              "qty": 5
+            }
+          ],
+          "get": {
+            "good": "fish",
+            "qty": 3
+          },
+          "times": 1
+        }
+      ],
+      "date": "2027-04-01",
+      "version": "market-day-v1-preview",
+      "template": "thu-1",
+      "best": 22,
+      "trap": 21,
+      "line": [
+        "baker",
+        "baker",
+        "baker",
+        "miller",
+        "miller",
+        "miller",
+        "carter",
+        "carter",
+        "shepherd",
+        "shepherd",
+        "cook"
+      ],
+      "solution": [
+        "Baker ×3: give 3 fish, get 15 bread. Now carrying 9 fish, 15 bread.",
+        "Miller ×3: give 15 bread, get 12 salt. Now carrying 9 fish, 12 salt.",
+        "Carter ×2: give 4 salt, get 2 wool. Now carrying 9 fish, 8 salt, 2 wool.",
+        "Shepherd ×2: give 2 wool, get 10 fish. Now carrying 19 fish, 8 salt.",
+        "Cook: give 5 salt, get 3 fish. Now carrying 22 fish, 3 salt."
+      ]
+    },
+    {
+      "id": "2027-04-02",
+      "day": "Friday",
+      "short": "Fri",
+      "difficulty": "Devious",
+      "home": "fish",
+      "start": {
+        "fish": 15
+      },
+      "cap": 6,
+      "note": "Your basket holds 6 goods besides fish. Sell goods to make space.",
+      "stalls": [
+        {
+          "id": "baker",
+          "name": "Baker",
+          "give": [
+            {
+              "good": "fish",
+              "qty": 1
+            }
+          ],
+          "get": {
+            "good": "bread",
+            "qty": 3
+          },
+          "times": 3
+        },
+        {
+          "id": "weaver",
+          "name": "Weaver",
+          "give": [
+            {
+              "good": "bread",
+              "qty": 4
+            }
+          ],
+          "get": {
+            "good": "wool",
+            "qty": 2
+          },
+          "times": 4
+        },
+        {
+          "id": "shepherd",
+          "name": "Shepherd",
+          "give": [
+            {
+              "good": "wool",
+              "qty": 1
+            }
+          ],
+          "get": {
+            "good": "fish",
+            "qty": 5
+          },
+          "times": 4
+        },
+        {
+          "id": "salter",
+          "name": "Salter",
+          "give": [
+            {
+              "good": "bread",
+              "qty": 2
+            }
+          ],
+          "get": {
+            "good": "salt",
+            "qty": 2
+          },
+          "times": 3
+        },
+        {
+          "id": "cook",
+          "name": "Cook",
+          "give": [
+            {
+              "good": "salt",
+              "qty": 3
+            }
+          ],
+          "get": {
+            "good": "fish",
+            "qty": 5
+          },
+          "times": 5
+        }
+      ],
+      "date": "2027-04-02",
+      "version": "market-day-v1-preview",
+      "template": "fri-1",
+      "best": 32,
+      "trap": 27,
+      "line": [
+        "baker",
+        "baker",
+        "weaver",
+        "shepherd",
+        "baker",
+        "weaver",
+        "shepherd",
+        "shepherd",
+        "shepherd"
+      ],
+      "solution": [
+        "Baker ×2: give 2 fish, get 6 bread. Now carrying 13 fish, 6 bread.",
+        "Weaver: give 4 bread, get 2 wool. Now carrying 13 fish, 2 bread, 2 wool.",
+        "Shepherd: give 1 wool, get 5 fish. Now carrying 18 fish, 2 bread, 1 wool.",
+        "Baker: give 1 fish, get 3 bread. Now carrying 17 fish, 5 bread, 1 wool.",
+        "Weaver: give 4 bread, get 2 wool. Now carrying 17 fish, 1 bread, 3 wool.",
+        "Shepherd ×3: give 3 wool, get 15 fish. Now carrying 32 fish, 1 bread."
+      ]
+    },
+    {
+      "id": "2027-04-03",
+      "day": "Saturday",
+      "short": "Sat",
+      "difficulty": "Intricate",
+      "home": "fish",
+      "start": {
+        "fish": 13
+      },
+      "note": "Mixed offers need all their ingredients together. Fish alone cannot buy everything.",
+      "stalls": [
+        {
+          "id": "baker",
+          "name": "Baker",
+          "give": [
+            {
+              "good": "fish",
+              "qty": 2
+            }
+          ],
+          "get": {
+            "good": "bread",
+            "qty": 4
+          },
+          "times": 3
+        },
+        {
+          "id": "salter",
+          "name": "Salter",
+          "give": [
+            {
+              "good": "fish",
+              "qty": 1
+            }
+          ],
+          "get": {
+            "good": "salt",
+            "qty": 4
+          },
+          "times": 2
+        },
+        {
+          "id": "dyer",
+          "name": "Dyer",
+          "give": [
+            {
+              "good": "bread",
+              "qty": 2
+            },
+            {
+              "good": "salt",
+              "qty": 2
+            }
+          ],
+          "get": {
+            "good": "wool",
+            "qty": 1
+          },
+          "times": 4
+        },
+        {
+          "id": "shepherd",
+          "name": "Shepherd",
+          "give": [
+            {
+              "good": "wool",
+              "qty": 1
+            }
+          ],
+          "get": {
+            "good": "fish",
+            "qty": 3
+          },
+          "times": 3
+        },
+        {
+          "id": "cook",
+          "name": "Cook",
+          "give": [
+            {
+              "good": "bread",
+              "qty": 5
+            }
+          ],
+          "get": {
+            "good": "fish",
+            "qty": 3
+          },
+          "times": 1
+        },
+        {
+          "id": "miller",
+          "name": "Miller",
+          "give": [
+            {
+              "good": "salt",
+              "qty": 2
+            }
+          ],
+          "get": {
+            "good": "bread",
+            "qty": 1
+          },
+          "times": 1
+        }
+      ],
+      "date": "2027-04-03",
+      "version": "market-day-v1-preview",
+      "template": "sat-1",
+      "best": 17,
+      "trap": 16,
+      "line": [
+        "baker",
+        "baker",
+        "baker",
+        "salter",
+        "salter",
+        "dyer",
+        "dyer",
+        "dyer",
+        "shepherd",
+        "shepherd",
+        "shepherd",
+        "cook"
+      ],
+      "solution": [
+        "Baker ×3: give 6 fish, get 12 bread. Now carrying 7 fish, 12 bread.",
+        "Salter ×2: give 2 fish, get 8 salt. Now carrying 5 fish, 12 bread, 8 salt.",
+        "Dyer ×3: give 6 bread + 6 salt, get 3 wool. Now carrying 5 fish, 6 bread, 2 salt, 3 wool.",
+        "Shepherd ×3: give 3 wool, get 9 fish. Now carrying 14 fish, 6 bread, 2 salt.",
+        "Cook: give 5 bread, get 3 fish. Now carrying 17 fish, 1 bread, 2 salt."
+      ]
+    },
+    {
+      "id": "2027-04-04",
+      "day": "Sunday",
+      "short": "Sun",
+      "difficulty": "Grand market",
+      "home": "fish",
+      "start": {
+        "fish": 12
+      },
+      "cap": 7,
+      "note": "Mixed offers, scarce stock, and a 7-good basket all matter today.",
+      "stalls": [
+        {
+          "id": "baker",
+          "name": "Baker",
+          "give": [
+            {
+              "good": "fish",
+              "qty": 1
+            }
+          ],
+          "get": {
+            "good": "bread",
+            "qty": 3
+          },
+          "times": 5
+        },
+        {
+          "id": "salter",
+          "name": "Salter",
+          "give": [
+            {
+              "good": "fish",
+              "qty": 1
+            }
+          ],
+          "get": {
+            "good": "salt",
+            "qty": 2
+          },
+          "times": 3
+        },
+        {
+          "id": "dyer",
+          "name": "Dyer",
+          "give": [
+            {
+              "good": "bread",
+              "qty": 4
+            },
+            {
+              "good": "salt",
+              "qty": 1
+            }
+          ],
+          "get": {
+            "good": "wool",
+            "qty": 2
+          },
+          "times": 3
+        },
+        {
+          "id": "shepherd",
+          "name": "Shepherd",
+          "give": [
+            {
+              "good": "wool",
+              "qty": 2
+            }
+          ],
+          "get": {
+            "good": "fish",
+            "qty": 5
+          },
+          "times": 5
+        },
+        {
+          "id": "cook",
+          "name": "Cook",
+          "give": [
+            {
+              "good": "bread",
+              "qty": 5
+            }
+          ],
+          "get": {
+            "good": "fish",
+            "qty": 3
+          },
+          "times": 1
+        },
+        {
+          "id": "miller",
+          "name": "Miller",
+          "give": [
+            {
+              "good": "bread",
+              "qty": 2
+            }
+          ],
+          "get": {
+            "good": "salt",
+            "qty": 2
+          },
+          "times": 3
+        },
+        {
+          "id": "weaver",
+          "name": "Weaver",
+          "give": [
+            {
+              "good": "salt",
+              "qty": 3
+            }
+          ],
+          "get": {
+            "good": "wool",
+            "qty": 1
+          },
+          "times": 3
+        }
+      ],
+      "date": "2027-04-04",
+      "version": "market-day-v1-preview",
+      "template": "sun-1",
+      "best": 22,
+      "trap": 21,
+      "line": [
+        "baker",
+        "baker",
+        "cook",
+        "baker",
+        "baker",
+        "miller",
+        "dyer",
+        "baker",
+        "dyer",
+        "salter",
+        "shepherd",
+        "salter",
+        "shepherd",
+        "salter",
+        "weaver",
+        "weaver",
+        "shepherd"
+      ],
+      "solution": [
+        "Baker ×2: give 2 fish, get 6 bread. Now carrying 10 fish, 6 bread.",
+        "Cook: give 5 bread, get 3 fish. Now carrying 13 fish, 1 bread.",
+        "Baker ×2: give 2 fish, get 6 bread. Now carrying 11 fish, 7 bread.",
+        "Miller: give 2 bread, get 2 salt. Now carrying 11 fish, 5 bread, 2 salt.",
+        "Dyer: give 4 bread + 1 salt, get 2 wool. Now carrying 11 fish, 1 bread, 1 salt, 2 wool.",
+        "Baker: give 1 fish, get 3 bread. Now carrying 10 fish, 4 bread, 1 salt, 2 wool.",
+        "Dyer: give 4 bread + 1 salt, get 2 wool. Now carrying 10 fish, 4 wool.",
+        "Salter: give 1 fish, get 2 salt. Now carrying 9 fish, 2 salt, 4 wool.",
+        "Shepherd: give 2 wool, get 5 fish. Now carrying 14 fish, 2 salt, 2 wool.",
+        "Salter: give 1 fish, get 2 salt. Now carrying 13 fish, 4 salt, 2 wool.",
+        "Shepherd: give 2 wool, get 5 fish. Now carrying 18 fish, 4 salt.",
+        "Salter: give 1 fish, get 2 salt. Now carrying 17 fish, 6 salt.",
+        "Weaver ×2: give 6 salt, get 2 wool. Now carrying 17 fish, 2 wool.",
+        "Shepherd: give 2 wool, get 5 fish. Now carrying 22 fish."
+      ]
+    }
+  ]
+}

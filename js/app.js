@@ -7,6 +7,8 @@
   var board = null, attempt = null, selected = null, manifest = null, progress = {};
   var currentDay = C.today(), view = 'today', months = new Map(), loadingToken = 0, flashTimer, announceTimer;
   var requested = C.selection(location.search, currentDay);
+  var LB = window.MarketLeaderboard, apiMeta = document.querySelector('meta[name="leaderboard-api"]');
+  var API = apiMeta ? apiMeta.content.trim().replace(/\/$/, '') : '', memoryToken = null;
 
   function el(tag, cls, text) {
     var node = document.createElement(tag);
@@ -265,11 +267,92 @@
       catch (e) { if (e.name !== 'AbortError') flash('Sharing is unavailable. Use Copy result + link.'); }
     }));
     result.append(actions);
+    renderLeaderboard(result);
     var solution = el('details', 'solution'), summary = el('summary', '', 'See a route to ' + score.best + ' fish'), steps = el('ol');
     board.solution.forEach(function (step) { steps.append(el('li', '', step)); });
     solution.append(summary, steps); result.append(solution);
     result.append(button('Play this market again', 'btn', reset));
     if (focus) { heading.focus(); announce('Market closed. ' + score.final + ' of ' + score.best + ' fish.'); }
+  }
+  /* Shared leaderboard: shown only after closing a daily market, and only when the page names an API. */
+  function playerToken() {
+    var token = read('market-day:token');
+    if (LB.validToken(token)) return token;
+    token = memoryToken || LB.newToken(window.crypto); memoryToken = token; write('market-day:token', token);
+    return token;
+  }
+  async function leaderboardRequest(path, options) {
+    var response;
+    try { response = await fetch(API + path, Object.assign({ cache: 'no-store' }, options)); }
+    catch (e) { throw new Error('The leaderboard is unavailable right now.'); }
+    var data = await response.json().catch(function () { return {}; });
+    if (!response.ok) throw new Error(data.error || 'The leaderboard is unavailable right now.');
+    return data;
+  }
+  function standingsTable(data) {
+    var table = el('table', 'standings'), head = el('tr'), body = el('tbody');
+    table.append(el('caption', 'sr-only', 'Leaderboard for ' + C.label(data.date) + ', ' + data.count + (data.count === 1 ? ' player' : ' players')));
+    ['Rank', 'Player', 'Fish', 'Trades'].forEach(function (name) { var th = el('th', '', name); th.scope = 'col'; head.append(th); });
+    var thead = el('thead'); thead.append(head);
+    function row(entry) {
+      var tr = el('tr', entry.you ? 'you' : ''), who = el('th', '', entry.nickname + (entry.you ? ' (you)' : ''));
+      who.scope = 'row';
+      tr.append(el('td', '', String(entry.rank)), who, el('td', '', entry.fish + (entry.perfect ? ' ★' : '')), el('td', '', String(entry.trades)));
+      return tr;
+    }
+    data.entries.forEach(function (entry) { body.append(row(entry)); });
+    if (data.you && !data.entries.some(function (e) { return e.you; })) body.append(row(data.you));
+    table.append(thead, body);
+    return table;
+  }
+  function renderLeaderboard(container) {
+    if (!API || !LB || selected.kind !== 'daily' || !attempt.first) return;
+    var date = selected.id, posted = read('market-day:posted:' + date);
+    var section = el('section', 'leaderboard'), heading = el('h3', '', 'Leaderboard');
+    heading.id = 'leaderboard-heading'; section.setAttribute('aria-labelledby', heading.id);
+    var status = el('p', 'muted', 'Loading the leaderboard…'), holder = el('div', 'standings-wrap');
+    status.setAttribute('role', 'status');
+    section.append(heading);
+    function show(data) {
+      if (!section.isConnected) return;
+      holder.replaceChildren();
+      if (!data.entries.length) { status.textContent = 'No one has posted for this market yet.'; return; }
+      status.textContent = data.count + (data.count === 1 ? ' player has' : ' players have') + ' posted' + (data.count > LB.LIMIT ? '; showing the top ' + LB.LIMIT : '') + '.';
+      holder.append(standingsTable(data));
+    }
+    function failed(error) { if (section.isConnected) status.textContent = error.message + ' Your result is still saved here.'; }
+    if (!posted) {
+      var form = el('form', 'post-form'), label = el('label', '', 'Nickname'), input = el('input'), error = el('p', 'form-error');
+      input.id = 'leaderboard-name'; input.name = 'nickname'; input.autocomplete = 'nickname'; input.maxLength = 40; input.required = true;
+      input.value = read('market-day:nickname') || ''; label.htmlFor = input.id;
+      error.id = 'leaderboard-name-error'; error.hidden = true;
+      var submit = el('button', 'btn primary', 'Post my first result'); submit.type = 'submit';
+      form.append(label, input, error, submit, el('p', 'muted', 'Posts your nickname with your first result for this market. Replays never count.'));
+      form.addEventListener('submit', async function (event) {
+        event.preventDefault();
+        var name;
+        try { name = LB.nickname(input.value); }
+        catch (e) {
+          error.textContent = e.message; error.hidden = false;
+          input.setAttribute('aria-invalid', 'true'); input.setAttribute('aria-describedby', error.id); input.focus(); return;
+        }
+        error.hidden = true; input.removeAttribute('aria-invalid'); input.removeAttribute('aria-describedby');
+        submit.disabled = true; status.textContent = 'Posting…';
+        try {
+          var data = await leaderboardRequest('/submit', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(LB.payload(board, date, attempt.first.log, name, playerToken())) });
+          write('market-day:nickname', name); write('market-day:posted:' + date, name);
+          if (!section.isConnected) return;
+          form.remove(); show(data);
+          var you = data.you ? ' You are #' + data.you.rank + '.' : '';
+          status.textContent = 'Posted as ' + name + '.' + you + ' ' + status.textContent;
+          announce('Posted to the leaderboard as ' + name + '.' + you);
+        } catch (e) { submit.disabled = false; failed(e); }
+      });
+      section.append(form);
+    } else section.append(el('p', '', 'Posted as ' + posted + '.'));
+    section.append(status, holder); container.append(section);
+    leaderboardRequest('/board?date=' + encodeURIComponent(date), { headers: { 'X-Market-Token': playerToken() } }).then(show, failed);
   }
   function reset() {
     if (!board || !attempt) return;

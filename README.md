@@ -6,8 +6,8 @@ with the biggest haul you can manage. Only fish count at the end.
 
 **Play it:** https://financeprofessormckee.github.io/Market-Day/
 
-No login, no account, no ads, nothing tracked. Your progress stays in your own
-browser.
+No login, no account, no ads, no analytics. Your progress stays in your own
+browser unless you choose to post a score to the daily leaderboard.
 
 ## How a week works
 
@@ -41,6 +41,18 @@ https://financeprofessormckee.github.io/Market-Day/?puzzle=2026-10-19
 
 Paste it into a group chat or Discord. The link opens that same market for your
 friends so they can try to beat you. It never includes your moves.
+
+## Daily leaderboard
+
+After you close a daily market, you can post your **first** result under a
+nickname. The board ranks by fish, then fewer trades, then who posted first.
+It only appears after you close the market, so it never spoils the puzzle.
+Practice markets and replays don't post.
+
+Posting is optional. The server replays your trades against the day's board to
+check the score, then keeps only your nickname, fish, trade count, the time,
+and a scrambled ID tied to your browser (so it can show your own row). If the
+leaderboard is ever down, the game plays exactly the same.
 
 ## Credits
 

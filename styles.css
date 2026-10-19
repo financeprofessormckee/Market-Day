@@ -111,6 +111,22 @@ select { background: var(--surface); border: 1px solid var(--line); border-radiu
 .result.celebrate { animation: celebrate .45s; }
 @keyframes celebrate { 50% { transform: translateY(-4px); } }
 .share-preview { white-space: pre-wrap; overflow-wrap: anywhere; font: .9rem/1.6 var(--body); background: var(--off); padding: 14px; border: 1px solid var(--line); border-radius: 10px; margin: 0; }
+.leaderboard { display: flex; flex-direction: column; gap: 10px; border-top: 1px solid var(--line); padding-top: 12px; }
+.leaderboard h3 { font: 700 1.15rem var(--display); }
+.post-form { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.post-form label { font-weight: 700; flex-basis: 100%; }
+.post-form input { flex: 1 1 12rem; min-width: 0; min-height: 46px; padding: 8px 10px; font: inherit; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
+.post-form .muted, .form-error { flex-basis: 100%; }
+.form-error { color: var(--bad); font-weight: 700; font-size: .9rem; }
+.standings-wrap { overflow-x: auto; }
+.standings { width: 100%; border-collapse: collapse; font-size: .95rem; font-variant-numeric: tabular-nums; }
+.standings th, .standings td { padding: 8px 6px; text-align: left; border-bottom: 1px solid var(--line); }
+.standings thead th { color: var(--muted); font-size: .8rem; text-transform: uppercase; letter-spacing: .06em; }
+.standings tbody th { font-weight: 400; overflow-wrap: anywhere; }
+.standings td:first-child, .standings td:nth-child(3), .standings td:nth-child(4), .standings thead th:not(:nth-child(2)) { text-align: right; }
+.standings td { white-space: nowrap; }
+.standings tr.you { background: var(--off); font-weight: 700; }
+.standings tr.you th { font-weight: 700; }
 details { border-top: 1px solid var(--line); padding-top: 8px; }
 summary { cursor: pointer; display: list-item; padding-block: 10px; min-height: 44px; font-weight: 700; }
 ol, ul { margin: 8px 0 0; padding-left: 1.4rem; }
